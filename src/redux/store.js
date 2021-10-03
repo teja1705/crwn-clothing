@@ -1,11 +1,8 @@
 import { applyMiddleware, createStore } from "redux";
- import logger from "redux-logger";
+import logger from "redux-logger";
 import rootReducer from "./root.reducer";
-// import thunk from "redux-thunk";
-// import { fetchUsers } from "./user/user.action";
+import { persistStore } from "redux-persist";
 
-const middlewares = [logger]
-const store = createStore(rootReducer, applyMiddleware(...middlewares));
-// store.subscribe(()=> {console.log(store.getState())})
-// store.dispatch(fetchUsers());
-export default store;
+const middlewares = [logger];
+export const store = createStore(rootReducer, applyMiddleware(...middlewares));
+export const persistor = persistStore(store);
